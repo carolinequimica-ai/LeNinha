@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#730000">
+<title>Seu mimo LeNinha</title>
+<style>
+:root{
+  --wine:#6f0509; --wine-deep:#4c0507; --ivory:#fbf7f0; --paper:#fffdf9;
+  --champagne:#c89b52; --ink:#2b211d; --muted:#746760; --line:#e8ded2;
+  --shadow:0 24px 70px rgba(55,32,22,.10)
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#eee9e2;color:var(--ink);font-family:"Avenir Next","Segoe UI",Helvetica,Arial,sans-serif;font-weight:400;-webkit-font-smoothing:antialiased}
+button,input{font:inherit}
+.page{max-width:720px;margin:auto;min-height:100vh;background:var(--paper);box-shadow:0 0 60px rgba(45,30,22,.08)}
+.hero{position:relative;min-height:520px;display:flex;align-items:flex-end;overflow:hidden;background:#2c1711}
+.hero:before{content:"";position:absolute;inset:0;background:url("assets/cafe.jpg") center 48%/cover no-repeat;transform:scale(1.01)}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,10,7,.05) 0%,rgba(20,10,7,.12) 36%,rgba(20,10,7,.74) 78%,rgba(20,10,7,.92) 100%)}
+.hero-inner{position:relative;z-index:2;width:100%;padding:22px 42px 48px}
+.brand{display:flex;align-items:center;gap:14px;margin-bottom:126px}
+.brand img{width:88px;height:88px;border-radius:50%;background:var(--wine);box-shadow:0 10px 28px rgba(0,0,0,.16)}
+.brand-copy{display:none}
+.eyebrow{color:#e6c785;font-size:10px;text-transform:uppercase;letter-spacing:.28em;font-weight:600}
+h1,h2{font-family:"Baskerville","Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;margin:0;font-weight:400}
+h1{max-width:530px;color:#fff;font-size:clamp(42px,7.5vw,62px);line-height:1.01;letter-spacing:-.025em;margin-top:11px}
+h1 em{color:#edcf8d;font-style:italic;font-weight:400}
+.hero p{color:rgba(255,255,255,.86);max-width:480px;font-size:15px;line-height:1.65;margin:19px 0 0;font-weight:350}
+.section{padding:48px 42px}
+.coupon-wrap{margin-top:-24px;position:relative;z-index:3}
+.coupon{position:relative;background:var(--wine);color:#fff;border-radius:22px;padding:34px 34px 32px;box-shadow:var(--shadow);overflow:hidden;border:1px solid rgba(200,155,82,.28)}
+.coupon:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--champagne)}
+.coupon-top{display:flex;justify-content:space-between;gap:18px;align-items:flex-start}
+.kicker{font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:#e6c785;font-weight:650}
+.valid{font-size:10px;line-height:1.5;color:rgba(255,255,255,.68);text-align:right;letter-spacing:.03em}
+.valid b{font-weight:500;color:#fff}
+.coupon h2{font-size:38px;line-height:1.05;margin:18px 0 12px;letter-spacing:-.018em}
+.coupon .rule{font-size:14px;line-height:1.7;color:rgba(255,255,255,.83);margin:0 0 25px;font-weight:350}
+.coupon .rule b{font-weight:600;color:#fff}
+.codebox{background:#f8f1e7;color:var(--wine-deep);border-radius:14px;padding:18px 16px;text-align:center;border:1px solid rgba(200,155,82,.22)}
+.code-label{font-size:8px;text-transform:uppercase;letter-spacing:.25em;color:#826f65;font-weight:650}
+#couponCode{display:block;font-weight:650;font-size:clamp(23px,5.2vw,32px);letter-spacing:.055em;margin-top:7px;word-break:break-word}
+.print{display:flex;gap:14px;align-items:center;margin-top:20px;padding-top:19px;border-top:1px solid rgba(230,199,133,.32)}
+.print b{color:#f1d69b;display:block;font-size:13px;font-weight:600;margin-bottom:3px}.print span{font-size:11px;line-height:1.5;color:rgba(255,255,255,.72)}
+.camera{font-size:20px;filter:grayscale(1)}
+.products-title{text-align:left;margin-bottom:25px}
+.products-title .eyebrow{color:#9c7537}
+.products-title h2{font-size:38px;line-height:1.08;margin-top:8px;letter-spacing:-.02em}
+.products{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.product{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 10px 28px rgba(55,32,22,.07)}
+.product img{width:100%;aspect-ratio:.86/1;object-fit:cover;display:block}
+.product:nth-child(1) img{object-position:center 67%}.product:nth-child(2) img{object-position:center 66%}.product:nth-child(3) img{object-position:center 64%}
+.product div{padding:12px 12px 14px;text-align:center;font-family:"Avenir Next","Segoe UI",sans-serif;font-weight:500;font-size:11px;line-height:1.35;letter-spacing:.01em}
+.how{background:#f3eee7;border:0}
+.how h2,.lead h2{font-size:37px;line-height:1.08;margin-bottom:26px;letter-spacing:-.02em}
+.steps{display:grid;gap:0;border-top:1px solid #d9cec2}
+.step{display:grid;grid-template-columns:30px 1fr;gap:14px;align-items:start;padding:18px 0;border-bottom:1px solid #d9cec2}
+.num{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;border:1px solid #a37b45;background:transparent;color:#805d2d;font-family:Georgia,serif;font-size:12px}
+.step b{display:block;margin:1px 0 4px;font-size:13px;font-weight:600}.step span{color:var(--muted);font-size:12px;line-height:1.55}
+.lead-card{border:1px solid var(--line);border-radius:22px;padding:30px;background:#fff;box-shadow:0 16px 42px rgba(55,32,22,.07)}
+.lead .eyebrow{color:#9c7537!important}
+.lead p{color:var(--muted);font-size:13px;line-height:1.65}
+label.field{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.16em;font-weight:650;margin:22px 0 9px}
+.phone{width:100%;padding:15px 14px;border:1px solid #d9cec2;border-radius:12px;background:#fff;outline:none;font-size:15px}
+.phone:focus{border-color:#8a5f5e;box-shadow:0 0 0 3px rgba(111,5,9,.05)}
+.check{display:grid;grid-template-columns:19px 1fr;gap:10px;margin:16px 0;color:#6b5e57;font-size:11px;line-height:1.5}
+.check input{width:17px;height:17px;accent-color:var(--wine)}
+.cta{width:100%;border:0;border-radius:12px;background:var(--wine);color:#fff;padding:16px;font-size:11px;letter-spacing:.15em;font-weight:650;cursor:pointer;box-shadow:none}
+.cta:disabled{opacity:.38;cursor:not-allowed}
+.msg{min-height:20px;margin-top:10px;font-size:11px;font-weight:600}
+.save{margin-top:20px;padding:15px 0 0;border-radius:0;background:transparent;border:0;border-top:1px solid var(--line);font-size:11px;line-height:1.55;color:var(--muted)}
+.save b{color:var(--wine);font-weight:600}
+.foot{padding:34px 26px 38px;text-align:center;background:var(--wine-deep);color:#f9eee4}
+.foot img{width:62px;height:62px;border-radius:50%;margin-bottom:12px}.foot p{margin:0;font-size:10px;letter-spacing:.12em;text-transform:uppercase;opacity:.72}
+.badge{display:inline-block;margin-top:13px;border:0;border-top:1px solid rgba(255,255,255,.18);border-radius:0;padding:12px 6px 0;font-size:8px;letter-spacing:.18em;opacity:.72}
+@media(max-width:540px){
+ .hero{min-height:500px}.hero-inner{padding:26px 22px 40px}.brand{margin-bottom:124px}.brand img{width:76px;height:76px}
+ h1{font-size:43px}.hero p{font-size:14px}
+ .section{padding:38px 22px}.coupon-wrap{margin-top:-18px}.coupon{padding:28px 22px 26px}.coupon h2{font-size:34px}
+ .products{gap:7px}.product div{font-size:10px}.products-title h2,.how h2,.lead h2{font-size:33px}
+ .lead-card{padding:24px 20px}
+}
+@media print{
+ body{background:#fff}.page{box-shadow:none}.hero,.products-title,.products,.how,.lead,.foot{display:none!important}
+ .section{padding:0}.coupon-wrap{margin:0}.coupon{box-shadow:none;print-color-adjust:exact;-webkit-print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+<main class="page">
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="brand">
+        <img src="assets/logo.png" alt="LeNinha">
+        <div class="brand-copy"><strong>LeNinha</strong><span>Confeitaria & Café</span></div>
+      </div>
+      <div class="eyebrow">Um convite para você</div>
+      <h1>Seu mimo <em>está garantido.</em></h1>
+      <p>Na compra de qualquer item, escolha um dos três mimos abaixo para aproveitar na LeNinha.</p>
+    </div>
+  </header>
+
+  <section class="section coupon-wrap">
+    <article class="coupon" id="cupom">
+      <div class="coupon-top">
+        <div class="kicker">Seu cupom</div>
+        <div class="valid">Válido até<br><b>30 de novembro</b></div>
+      </div>
+      <h2>Escolha seu mimo.</h2>
+      <p class="rule">1 espresso, 1 fatia de bolo de rolo de goiabada ou 1 pão de queijo simples, <b>na compra de qualquer item.</b></p>
+      <div class="codebox">
+        <div class="code-label">Mostre este código no caixa</div>
+        <span id="couponCode">VEMPROLENINHA3</span>
+      </div>
+      <div class="print">
+        <div class="camera">📸</div>
+        <div><b>Tire um print desta tela agora.</b><span>Apresente o print no caixa no momento da compra. O número final do código precisa aparecer.</span></div>
+      </div>
+    </article>
+  </section>
+
+  <section class="section">
+    <div class="products-title">
+      <div class="eyebrow">Você escolhe</div>
+      <h2>Qual vai ser o seu?</h2>
+    </div>
+    <div class="products">
+      <article class="product"><img src="assets/cafe.jpg" alt="Café da LeNinha"><div>1 espresso</div></article>
+      <article class="product"><img src="assets/bolo-rolo.jpg" alt="Bolo de rolo de goiabada da LeNinha"><div>1 fatia de bolo de rolo</div></article>
+      <article class="product"><img src="assets/pao-queijo.jpg" alt="Pão de queijo da LeNinha"><div>1 pão de queijo simples</div></article>
+    </div>
+  </section>
+
+  <section class="section how">
+    <h2>É simples.</h2>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><div><b>Salve o cupom</b><span>Tire o print com o código completo.</span></div></div>
+      <div class="step"><div class="num">2</div><div><b>Venha à LeNinha</b><span>Escolha o que quiser consumir.</span></div></div>
+      <div class="step"><div class="num">3</div><div><b>Mostre no caixa</b><span>Apresente o print e escolha um dos três mimos.</span></div></div>
+    </div>
+  </section>
+
+  <section class="section lead">
+    <div class="lead-card">
+      <div class="eyebrow" style="color:#986b24">Opcional</div>
+      <h2>Quer receber novidades da LeNinha?</h2>
+      <p>Se quiser receber os próximos mimos e novidades, deixe seu WhatsApp abaixo.</p>
+      <form id="leadForm" novalidate>
+        <label class="field" for="phone">WhatsApp</label>
+        <input class="phone" id="phone" name="phone" inputmode="tel" autocomplete="tel" placeholder="(31) 9 9999-9999">
+        <label class="check"><input id="consent" type="checkbox"><span>Autorizo a LeNinha a enviar mensagens e novidades pelo WhatsApp.</span></label>
+        <button class="cta" id="submitBtn" type="submit" disabled>QUERO RECEBER</button>
+        <div class="msg" id="msg" aria-live="polite"></div>
+      </form>
+      <div class="save"><b>Depois, salve o contato da LeNinha na agenda.</b><br>Assim você garante que receberá nossos descontos e novidades em primeira mão.</div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <img src="assets/logo.png" alt="">
+    <p>LeNinha · Confeitaria & Café</p>
+    
+  </footer>
+</main>
+
+<script>
+const phone = document.getElementById("phone");
+const consent = document.getElementById("consent");
+const btn = document.getElementById("submitBtn");
+const msg = document.getElementById("msg");
+
+function formatPhone(v){
+  v=v.replace(/\D/g,"").slice(0,11);
+  if(v.length>10) return v.replace(/^(\d{2})(\d{5})(\d{0,4}).*/,"($1) $2-$3");
+  if(v.length>6) return v.replace(/^(\d{2})(\d{4})(\d{0,4}).*/,"($1) $2-$3");
+  if(v.length>2) return v.replace(/^(\d{2})(\d+)/,"($1) $2");
+  return v;
+}
+function valid(){
+  const digits=phone.value.replace(/\D/g,"");
+  btn.disabled=!(consent.checked && digits.length>=10);
+}
+phone.addEventListener("input",()=>{phone.value=formatPhone(phone.value);valid()});
+consent.addEventListener("change",valid);
+
+document.getElementById("leadForm").addEventListener("submit", e=>{
+  e.preventDefault();
+  if(btn.disabled) return;
+  const payload={
+    whatsapp:phone.value,
+    consent:true,
+    coupon:document.getElementById("couponCode").textContent,
+    captured_at:new Date().toISOString()
+  };
+  localStorage.setItem("leninha_lead",JSON.stringify(payload));
+  msg.style.color="#467145";
+  msg.textContent="Pronto! Seu interesse foi registrado neste aparelho.";
+  /*
+    INTEGRAÇÃO:
+    substitua o bloco acima por fetch() para seu endpoint, CRM, planilha ou automação.
+    O cupom NÃO depende do cadastro: ele já foi entregue antes do formulário.
+  */
+});
+</script>
+</body>
+</html>
