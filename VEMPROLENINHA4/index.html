@@ -202,20 +202,25 @@ consent.addEventListener("change",valid);
 document.getElementById("leadForm").addEventListener("submit", e=>{
   e.preventDefault();
   if(btn.disabled) return;
-  const payload={
-    whatsapp:phone.value,
-    consent:true,
-    coupon:document.getElementById("couponCode").textContent,
-    captured_at:new Date().toISOString()
-  };
-  localStorage.setItem("leninha_lead",JSON.stringify(payload));
-  msg.style.color="#467145";
-  msg.textContent="Pronto! Seu interesse foi registrado neste aparelho.";
-  /*
-    INTEGRAÇÃO:
-    substitua o bloco acima por fetch() para seu endpoint, CRM, planilha ou automação.
-    O cupom NÃO depende do cadastro: ele já foi entregue antes do formulário.
-  */
+  btn.disabled=true;
+  msg.style.color="#746760";
+  msg.textContent="Enviando...";
+  const dados=new FormData();
+  dados.append("entry.1489444685", phone.value);
+  dados.append("entry.207918802", document.getElementById("couponCode").textContent);
+  dados.append("entry.1337158960", "Sim");
+  dados.append("entry.707209731", "pagina");
+  fetch("https://docs.google.com/forms/d/e/1FAIpQLSdhXL9ujHMiec-A8G3Ftaw-yf6AM4-2QbLPk90Z9fN40ghxYw/formResponse",{
+    method:"POST", mode:"no-cors", body:dados
+  }).then(()=>{
+    msg.style.color="#467145";
+    msg.textContent="Pronto! Vamos te avisar das novidades por WhatsApp.";
+    phone.disabled=true; consent.disabled=true;
+  }).catch(()=>{
+    msg.style.color="#8a1f23";
+    msg.textContent="Nao conseguimos enviar agora. Seu cupom continua valido - basta mostrar o print no caixa.";
+    btn.disabled=false;
+  });
 });
 </script>
 </body>
