@@ -162,8 +162,10 @@ label.field{display:block;font-size:10px;text-transform:uppercase;letter-spacing
       <h2>Quer receber novidades da LeNinha?</h2>
       <p>Se quiser receber os próximos mimos e novidades, deixe seu WhatsApp abaixo.</p>
       <form id="leadForm" novalidate>
+        <label class="field" for="nome">Seu nome</label>
+        <input class="phone" id="nome" name="name" autocomplete="given-name" placeholder="Como podemos te chamar?">
         <label class="field" for="phone">WhatsApp</label>
-        <input class="phone" id="phone" name="phone" inputmode="tel" autocomplete="tel" placeholder="(31) 9 9999-9999">
+        <input class="phone" id="phone" name="phone" inputmode="tel" autocomplete="tel-national" name="tel" placeholder="(31) 9 9999-9999">
         <label class="check"><input id="consent" type="checkbox"><span>Autorizo a LeNinha a enviar mensagens e novidades pelo WhatsApp.</span></label>
         <button class="cta" id="submitBtn" type="submit" disabled>QUERO RECEBER</button>
         <div class="msg" id="msg" aria-live="polite"></div>
@@ -206,6 +208,7 @@ document.getElementById("leadForm").addEventListener("submit", e=>{
   msg.style.color="#746760";
   msg.textContent="Enviando...";
   const dados=new FormData();
+  dados.append("entry.1167637931", document.getElementById("nome").value);
   dados.append("entry.1489444685", phone.value);
   dados.append("entry.207918802", document.getElementById("couponCode").textContent);
   dados.append("entry.1337158960", "Sim");
